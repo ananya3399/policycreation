@@ -1,6 +1,8 @@
 package com.example.policycreation.property;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "property")
@@ -8,23 +10,36 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int propertyid;
+
+    @NotBlank(message = "Property Code mandatory")
     private String propertycode;
+
+    @NotBlank(message = "Property Type mandatory")
     private String propertytype;
+
+    @NotBlank(message = "Vehicle Brand mandatory")
     private String vehiclebrand;
+
     private String vehiclemodel;
     private int buildyear;
     private String fueltypes;
     private String enginepower;
+
+    @NotBlank(message = "License Number mandatory")
     private String licenseplatenumber;
+
     private String vusage;
+
+    @Positive(message = "Mileage should be positive")
     private int mileage;
+
     private String mileageunit;
 
     public Property() {
         super();
     }
 
-    public Property(int propertyid, String propertycode, String propertytype, String vehiclebrand, String vehiclemodel, int buildyear, String fueltypes, String enginepower, String licenseplatenumber, String vusage, int mileage, String mileageunit) {
+    public Property(int propertyid, String propertycode, String propertytype, String vehiclebrand, String vehiclemodel, int buildyear, String fueltypes, String enginepower, String licenseplatenumber, String vusage, int mileage, String mileageunit, int propertyfactor) {
         this.propertyid = propertyid;
         this.propertycode = propertycode;
         this.propertytype = propertytype;
@@ -149,21 +164,4 @@ public class Property {
         this.mileageunit = mileageunit;
     }
 
-    @Override
-    public String toString() {
-        return "Property{" +
-                "propertyid=" + propertyid +
-                ", propertycode='" + propertycode + '\'' +
-                ", propertytype='" + propertytype + '\'' +
-                ", vehiclebrand='" + vehiclebrand + '\'' +
-                ", vehiclemodel='" + vehiclemodel + '\'' +
-                ", buildyear=" + buildyear +
-                ", fueltypes='" + fueltypes + '\'' +
-                ", enginepower='" + enginepower + '\'' +
-                ", licenseplatenumber='" + licenseplatenumber + '\'' +
-                ", vusage='" + vusage + '\'' +
-                ", mileage=" + mileage +
-                ", mileageunit='" + mileageunit + '\'' +
-                '}';
-    }
 }
