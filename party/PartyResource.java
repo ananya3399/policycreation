@@ -3,6 +3,9 @@ package com.example.policycreation.party;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @RestController
@@ -30,7 +33,7 @@ public class PartyResource {
     }
 
     @PostMapping("/party") //to add a party
-    public Party addParty(@RequestBody Party theParty){
+    public Party addParty(@Valid @RequestBody Party theParty){
         theParty.setPartyid(0);
         partyService.save(theParty);
         return theParty;
