@@ -1,47 +1,31 @@
-package com.example.policycreation.party;
+package com.example.policycreation.contract;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+public class Contract {
+    private int premiumfactor;
+    private int partyid;
 
-import java.util.List;
-import java.util.Optional;
-
-@Service
-public class PartyServiceImpl implements PartyService{
-
-    @Autowired
-    private PartyRepository partyRepository;
-
-    @Autowired
-    public PartyServiceImpl(PartyRepository thePartyRepository) {
-        partyRepository = thePartyRepository;
+    public Contract() {
+        super();
     }
 
-    @Override
-    public List<Party> findAll() {
-        return partyRepository.findAll();
+    public Contract(int premiumfactor, int partyid) {
+        this.premiumfactor = premiumfactor;
+        this.partyid = partyid;
     }
 
-    @Override
-    public Party findById(int theId) {
-        Optional<Party> result=partyRepository.findById(theId);
-        Party theParty = null;
-        if (result.isPresent()){
-            theParty=result.get();
-        }
-        else {
-            throw new RuntimeException("Did not find party ID - "+theId);
-        }
-        return theParty;
+    public int getPremiumfactor() {
+        return premiumfactor;
     }
 
-    @Override
-    public void save(Party theParty) {
-        partyRepository.save(theParty);
+    public void setPremiumfactor(int premiumfactor) {
+        this.premiumfactor = premiumfactor;
     }
 
-    @Override
-    public void deleteById(int theId) {
-        partyRepository.deleteById(theId);
+    public int getPartyid() {
+        return partyid;
+    }
+
+    public void setPartyid(int partyid) {
+        this.partyid = partyid;
     }
 }
