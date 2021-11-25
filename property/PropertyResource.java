@@ -3,6 +3,7 @@ package com.example.policycreation.property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class PropertyResource {
     }
 
     @PostMapping("/property") //to add a property
-    public Property addProperty(@RequestBody Property theProperty){
+    public Property addProperty(@Valid @RequestBody Property theProperty){
         theProperty.setPropertyid(0);
         propertyService.save(theProperty);
         return theProperty;
